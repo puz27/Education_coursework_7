@@ -1,3 +1,6 @@
 from django.db import models
+from config import settings
 
-# Create your models here.
+
+class Habit:
+    pass
