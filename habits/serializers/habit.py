@@ -9,13 +9,18 @@ class HabitSerializer(serializers.ModelSerializer):
         # check usual habit
         if new_habit.is_pleasant is False:
             if not new_habit.award:
-                raise serializers.ValidationError("Usual habit must has award!")
+                if not new_habit.link_pleasant:
+                    raise serializers.ValidationError("Usual habit must has award or pleasant habit!")
+            else:
+                if new_habit.link_pleasant:
+                    raise serializers.ValidationError("Usual habit must not has award and pleasant habit simultaneously!")
 
             return new_habit
         # check pleasant habit
         else:
-            if new_habit.award is not None:
+            if new_habit.award:
                 raise serializers.ValidationError("Pleasant habit can not has award!")
+            return new_habit
 
     class Meta:
         model = Habit
