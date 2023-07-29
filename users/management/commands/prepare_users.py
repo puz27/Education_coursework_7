@@ -52,15 +52,3 @@ class Command(BaseCommand):
 
         user.set_password("test3")
         user.save()
-
-        user = Users.objects.create(
-            email="moderator@gmail.com",
-            first_name="moderator",
-            last_name="moderator",
-            is_superuser=False,
-            is_staff=True,
-            is_active=True
-        )
-
-        user.set_password("moderator")
-        user.save()
