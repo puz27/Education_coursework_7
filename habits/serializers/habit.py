@@ -6,6 +6,9 @@ class HabitSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         new_habit = Habit.objects.create(**validated_data)
+        # check duration
+        if new_habit.duration > 120:
+            raise serializers.ValidationError("Duration greater than 120 minutes!")
         # check usual habit
         if new_habit.is_pleasant is False:
             if not new_habit.award:
