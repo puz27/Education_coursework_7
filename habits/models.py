@@ -16,7 +16,7 @@ class Habit(models.Model):
     is_pleasant = models.BooleanField(default=False, verbose_name="flag for pleasant habit")
     link_pleasant = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
     frequency = models.CharField(choices=HabitFrequency.choices, default=HabitFrequency.Daily)
-    award = models.CharField(max_length=100, null=False, blank=False, verbose_name="award for habit")
+    award = models.CharField(max_length=100, null=True, blank=True, verbose_name="award for habit")
     duration = models.CharField(max_length=100, null=False, blank=False, verbose_name="habit duration")
     is_public = models.BooleanField(default=True)
 
