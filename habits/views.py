@@ -24,7 +24,10 @@ class HabitCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         new_habit = serializer.save()
+        print(self.request.user)
         new_habit.owner = self.request.user
+        print(new_habit.owner)
+        print(new_habit.action)
         new_habit.owner.save()
 
 

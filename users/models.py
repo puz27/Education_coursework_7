@@ -11,3 +11,11 @@ class Users(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return f"Action:{self.email}"
+
+    class Meta:
+        verbose_name = "users"
+        verbose_name_plural = 'users'
+

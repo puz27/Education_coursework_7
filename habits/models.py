@@ -7,7 +7,13 @@ class Habit(models.Model):
 
     class HabitFrequency(models.TextChoices):
         Daily = 'DAILY'
-        Weekly = 'WEEKLY'
+        monday = 'MONDAY'
+        tuesday = 'TUESDAY'
+        wednesday = 'WEDNESDAY'
+        thursday = 'THURSDAY'
+        friday = 'FRIDAY'
+        saturday = 'SATURDAY'
+        sunday = 'SUNDAY'
 
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, verbose_name="owner of habit")
     place = models.CharField(max_length=100, null=False, blank=False, verbose_name="place for habit")
@@ -20,3 +26,9 @@ class Habit(models.Model):
     duration = models.IntegerField(null=False, blank=False, verbose_name="habit duration")
     is_public = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f"Action:{self.action} Time:{self.time} Place:{self.place}"
+
+    class Meta:
+        verbose_name = "habit"
+        verbose_name_plural = 'habits'
