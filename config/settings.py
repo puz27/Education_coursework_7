@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'habits',
     'users',
     'drf_yasg',
+    'corsheaders',
     # 'django_celery_beat'
     ]
 
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -148,6 +150,15 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',
+    ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    ]
+
+CORS_ALLOW_ALL_ORIGINS = False
 
 # Celery settings
 # CELERY_BROKER_URL = 'redis://localhost:6379'
