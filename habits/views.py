@@ -13,9 +13,18 @@ class HabitListView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        owner = Habit.objects.filter(owner=user)
-        # public = Habit.objects.filter(is_public=True)
-        return owner
+        search_owners = []
+        owners = Habit.objects.filter()
+        # find and filter users habits
+        for find_owner in owners:
+            print(find_owner)
+            if find_owner.is_public is True:
+                search_owners.append(find_owner)
+            else:
+                if find_owner.owner == user:
+                    search_owners.append(find_owner)
+        return search_owners
+
 
 
 class HabitDetailView(generics.RetrieveAPIView):
