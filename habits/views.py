@@ -1,6 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from habits.models import Habit
+from habits.pagination import DataPaginator
 from users.views import IsOwnerOrReadOnly
 from habits.serializers.habit import HabitSerializer
 from habits.permissions import IsOwner
@@ -10,6 +11,7 @@ class HabitListView(generics.ListAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
     permission_classes = [IsOwner]
+    pagination_class = DataPaginator
 
     def get_queryset(self):
         user = self.request.user
@@ -24,7 +26,6 @@ class HabitListView(generics.ListAPIView):
                 if find_owner.owner == user:
                     search_owners.append(find_owner)
         return search_owners
-
 
 
 class HabitDetailView(generics.RetrieveAPIView):
