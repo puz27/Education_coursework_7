@@ -39,19 +39,28 @@ class HabitTestCase(APITestCase):
             }
 
         response = self.client.post("/api/v1/habit/create/", data)
-        print(response.json())
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(Habit.objects.all().exists())
 
     def test_get_habit(self):
-        """ Test all habits of owner or public """
-        response = self.client.get("/api/v1/habits/")
+        """ Test get info about user habit """
+        data = {
+            "place": "At home.",
+            "time": "14:00:00",
+            "action": "Clean windows.",
+            "is_pleasant": "False",
+            "frequency": "SUNDAY",
+            "award": "To drink bear.",
+            "duration": 10,
+            "is_public": "True",
+            "owner": 2
+        }
+
+        self.client.post("/api/v1/habit/create/", data)
+        response = self.client.get("/api/v1/habit/2/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_get_habit(self):
-        """ Test all habits of owner or public """
-        response = self.client.get("/api/v1/habit/1/")
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
 
 
     # def test_get_subscriptions(self):
