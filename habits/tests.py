@@ -1,5 +1,8 @@
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
+from rest_framework_simplejwt.tokens import AccessToken
+
+from habits.models import Habit
 from users.models import Users
 
 
@@ -17,17 +20,11 @@ class HabitTestCase(APITestCase):
         self.user.set_password("test")
         self.user.save()
 
-        response = self.client.post(
-            "/api/v1/users/token/",
-            {"email": "test@gmail.com", "password": "test"}
-        )
-
-        self.access_token = response.json().get("access")
-        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.access_token}")
-
+        self.client = APIClient()
+        token = AccessToken.for_user(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
 
     def test_create_habit(self):
-
         data = {
             "place": "At home.",
             "time": "14:00:00",
@@ -40,10 +37,10 @@ class HabitTestCase(APITestCase):
             "owner": 1
             }
 
-        response = self.client.post("api/v1/habit/create/", data)
+        response = self.client.post("/api/v1/habit/create/", data)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # self.assertTrue(Habit.objects.all().exists())
+        self.assertTrue(Habit.objects.all().exists())
 
     # def test_get_subscriptions(self):
     #     response = self.client.get("/api/v1/subscription/")
