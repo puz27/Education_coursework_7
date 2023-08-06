@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'users',
     'drf_yasg',
     'corsheaders',
-    # 'django_celery_beat'
+    'django_celery_beat'
     ]
 
 
@@ -162,9 +162,17 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOW_ALL_ORIGINS = False
 
+CELERY_BEAT_SCHEDULE = {
+    'check_habit_time': {
+        'task': 'check_habit_time',
+        'schedule': timedelta(minutes=1)
+    },
+}
+
 # Celery settings
-# CELERY_BROKER_URL = 'redis://localhost:6379'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-# CELERY_TIMEZONE = "Europe/Moscow"
-# CELERY_TASK_TRACK_STARTED = True
-# CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
