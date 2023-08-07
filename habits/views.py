@@ -2,9 +2,9 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from habits.models import Habit
 from habits.pagination import DataPaginator
-from users.views import IsOwnerOrReadOnly
 from habits.serializers.habit import HabitSerializer
 from habits.permissions import IsOwner
+from habits.services import check_habit_time
 
 
 class HabitListView(generics.ListAPIView):
@@ -14,12 +14,12 @@ class HabitListView(generics.ListAPIView):
     pagination_class = DataPaginator
 
     def get_queryset(self):
+        check_habit_time()
         user = self.request.user
         search_owners = []
         owners = Habit.objects.filter()
         # find and filter users habits
         for find_owner in owners:
-            print(find_owner)
             if find_owner.is_public is True:
                 search_owners.append(find_owner)
             else:
