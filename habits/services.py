@@ -3,6 +3,7 @@ import requests
 from habits.models import Habit
 from users.models import Users
 from datetime import datetime
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # # TOKEN = settings.TELEGRAM_TOKEN
@@ -63,29 +64,24 @@ def habit_scheduler():
 
 
 def telegram_check_updates():
+
+    # get information from bot
     url_get_updates = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getUpdates"
     response = requests.get(url_get_updates)
     if response.status_code == 200:
-        for i in response.json()["result"]:
-            # print(i)
-            telegram_user_chat_id = response.json()["result"][0]["message"]["from"]["id"]
-            telegram_user_name = response.json()["result"][0]["message"]["from"]["username"]
-            print(telegram_user_chat_id, telegram_user_name)
-
-            user = Users.objects.get(telegram_user_name=telegram_user_name)
-            if user.chat_id is None:
-                user.chat_id = telegram_user_chat_id
-                user.save()
-
-
-# chat_id = "448121994"
-# message = "TEST"
-# #https://api.telegram.org/bot{ваш ключ}/getUpdates
-# url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
+        for telegram_users in response.json()["result"]:
+            telegram_user_chat_id = telegram_users["message"]["from"]["id"]
+            telegram_user_name = telegram_users["message"]["from"]["username"]
+            # try to write user telegram id to base
+            try:
+                user = Users.objects.get(telegram_user_name=telegram_user_name)
+                if user.chat_id is None:
+                    user.chat_id = telegram_user_chat_id
+                    user.save()
+            except ObjectDoesNotExist:
+                print("No user in the bases.")
 
 
-# get information about telegram users
 def check_habit_time():
-    # telegram_check_updates()
-
+    telegram_check_updates()
     habit_scheduler()
