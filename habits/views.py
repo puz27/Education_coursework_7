@@ -4,7 +4,7 @@ from habits.models import Habit
 from habits.pagination import DataPaginator
 from habits.serializers.habit import HabitSerializer
 from habits.permissions import IsOwner
-from habits.services import check_habit_time
+# from habits.services import check_habit_time
 
 
 class HabitListView(generics.ListAPIView):
@@ -14,7 +14,7 @@ class HabitListView(generics.ListAPIView):
     pagination_class = DataPaginator
 
     def get_queryset(self):
-        check_habit_time()
+        # check_habit_time()
         user = self.request.user
         search_owners = []
         owners = Habit.objects.filter()
