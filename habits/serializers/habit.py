@@ -3,6 +3,7 @@ from habits.models import Habit
 
 
 class HabitSerializer(serializers.ModelSerializer):
+    """ serializer for habit and validation"""
 
     def create(self, validated_data):
         new_habit = Habit.objects.create(**validated_data)

@@ -16,7 +16,7 @@
 * prepare migrations (python .\manage.py makemigrations)
 * make migrate (python .\manage.py migrate)
 * prepare test user (optional) (python .\manage.py prepare_platform)
-* prepare telegram bot for send information (you can use default configuration)
+* prepare telegram bot for send information (you can use default configuration @habitscheduler2023_bot)
 ## Start service
 * run command: celery -A config worker -l INFO
 * run command: -A config beat -l info -S django
@@ -37,13 +37,17 @@
 * http://127.0.0.1:8000/api/v1/users/token/ - get token for user
 * http://127.0.0.1:8000/api/v1/users/token/refresh/ - refresh user token
 
-
-## Interface
+## Examples work with interface
+### User authorization
+![img_1.png](authorization.png)
+### User registration
+![img_2.png](registration.png)
+### Habit creation
+![img_3.png](create.png)
 
 ## Additional
 * Author: Avramenko Nikolay
 * Date of release: 2023/07/10
-
 
 
 coverage run --source='.' manage.py test
