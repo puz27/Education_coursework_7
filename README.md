@@ -45,30 +45,17 @@
 ### Habit creation
 ![create.PNG](create.PNG)
 
-## Description Create Request format
-{
-    "place": "Home",
-    "time": "22:40:00",
-    "action": "To do something",
-    "is_pleasant": false / true,
-    "frequency": "DAY OF WEEK / DAILY",
-    "award": "Get something",
-    "duration": 60,
-    "is_public": false / true,
-    "owner": 1,
-    "link_pleasant": null / ID OF PLEASANT HABIT 
-    }
+### Description Create Request format
+* place - place of user habit
+* action - what to do
+* award - what user get for his not pleasant habit
+* duration - duration of habit (less than 121 seconds)
+* is_public - public or private habit
+* is_pleasant - flag for pleasant or not pleasant (usual) habit
+* frequency - daily habit or you can check day of week (MONDAY-SUNDAY)
+* time - when execute user habit
+* link_pleasant - usual (not pleasant) habit can have pleasant habit(in this case no award)
 
 ## Additional
 * Author: Avramenko Nikolay
 * Date of release: 2023/08/09
-
-
-coverage run --source='.' manage.py test
-coverage report
-python3 manage.py test habits.tests.HabitTestCase
-path('redoc/', schema_view.with_ui('redoc', cache_timeout=0)),
-
-sudo apt install redis-server
-# celery -A config worker -l INFO
-# celery -A config beat -l info -S django
