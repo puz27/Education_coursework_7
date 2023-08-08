@@ -1,4 +1,4 @@
-"# Education_coursework_7" 
+Education_coursework_7" 
 
 ## WORK WITH DJANGO DRF
 ### Allow to create habits scheduler and make notification to user telegram bot
@@ -13,9 +13,9 @@
 ## Prepare 
 * prepare .env file (examples in .env_sample)
 * create database for postgres
-* prepare migrations (python .\manage.py makemigrations)
-* make migrate (python .\manage.py migrate)
-* prepare test user (optional) (python .\manage.py prepare_platform)
+* prepare migrations (python manage.py makemigrations)
+* make migrate (python manage.py migrate)
+* prepare test user (optional) (python manage.py prepare_users)
 * prepare telegram bot for send information (you can use default configuration @habitscheduler2023_bot)
 ## Start service
 * run command: celery -A config worker -l INFO

@@ -9,6 +9,7 @@ class Command(BaseCommand):
             email="admin@gmail.com",
             first_name="admin@gmail.com",
             last_name="admin@gmail.com",
+            telegram_user_name="admin",
             is_superuser=True,
             is_staff=True,
             is_active=True
@@ -21,7 +22,7 @@ class Command(BaseCommand):
             email="test@gmail.com",
             first_name="test@gmail.com",
             last_name="test@gmail.com",
-            telegram_user_name="test_telegram_user_name",
+            telegram_user_name="Nik00lay",
             is_superuser=False,
             is_staff=False,
             is_active=True
