@@ -39,15 +39,29 @@
 
 ## Examples work with interface
 ### User authorization
-
+![authorization.PNG](authorization.PNG)
 ### User registration
-
+![registration.PNG](registration.PNG)
 ### Habit creation
+![create.PNG](create.PNG)
 
+## Description Create Request format
+{
+    "place": "Home",
+    "time": "22:40:00",
+    "action": "To do something",
+    "is_pleasant": false / true,
+    "frequency": "DAY OF WEEK / DAILY",
+    "award": "Get something",
+    "duration": 60,
+    "is_public": false / true,
+    "owner": 1,
+    "link_pleasant": null / ID OF PLEASANT HABIT 
+    }
 
 ## Additional
 * Author: Avramenko Nikolay
-* Date of release: 2023/07/10
+* Date of release: 2023/08/09
 
 
 coverage run --source='.' manage.py test
