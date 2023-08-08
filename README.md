@@ -22,12 +22,12 @@ Education_coursework_7"
 * run command: -A config beat -l info -S django
 * python manage.py runserver
 ## Work with API (habits)
-* [a link]:http://127.0.0.1:8000/api/v1/habits/ - show all habits that user has access
-* [a link]:http://127.0.0.1:8000/api/v1/habit/<int:pk>/ - show user's habit detail information
-* [a link]:http://127.0.0.1:8000/api/v1/habit/create/ - create habit
-* [a link]:http://127.0.0.1:8000/api/v1/habit/update/<int:pk>/ - update habit
-* [a link]:http://127.0.0.1:8000/api/v1/habit/delete/<int:pk>/ - delete habit
-* [a link]:http://127.0.0.1:8000/api/v1/share_habits/ - show all public habits
+* http://127.0.0.1:8000/api/v1/habits/ - show all habits that user has access
+* http://127.0.0.1:8000/api/v1/habit/<int:pk>/ - show user's habit detail information
+* http://127.0.0.1:8000/api/v1/habit/create/ - create habit
+* http://127.0.0.1:8000/api/v1/habit/update/<int:pk>/ - update habit
+* http://127.0.0.1:8000/api/v1/habit/delete/<int:pk>/ - delete habit
+* http://127.0.0.1:8000/api/v1/share_habits/ - show all public habits
 ## Work with API (users)
 * http://127.0.0.1:8000/api/v1/users/show/ - show all users
 * http://127.0.0.1:8000/api/v1/users/show/<int:pk>/ - show user's detail information
