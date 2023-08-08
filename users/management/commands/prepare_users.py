@@ -18,37 +18,14 @@ class Command(BaseCommand):
         user.save()
 
         user = Users.objects.create(
-            email="test1@gmail.com",
-            first_name="test1@gmail.com",
-            last_name="test1@gmail.com",
+            email="test@gmail.com",
+            first_name="test@gmail.com",
+            last_name="test@gmail.com",
+            telegram_user_name="test_telegram_user_name",
             is_superuser=False,
             is_staff=False,
             is_active=True
         )
 
         user.set_password("test")
-        user.save()
-
-        user = Users.objects.create(
-            email="test2@gmail.com",
-            first_name="test2@gmail.com",
-            last_name="test2@gmail.com",
-            is_superuser=False,
-            is_staff=False,
-            is_active=True
-        )
-
-        user.set_password("test2")
-        user.save()
-
-        user = Users.objects.create(
-            email="test3@gmail.com",
-            first_name="test3@gmail.com",
-            last_name="test3@gmail.com",
-            is_superuser=False,
-            is_staff=False,
-            is_active=True
-        )
-
-        user.set_password("test3")
         user.save()

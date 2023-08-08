@@ -3,24 +3,20 @@ from habits.models import Habit
 from users.models import Users
 from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
+from config import settings
 
 
-# # TOKEN = settings.TELEGRAM_TOKEN
-TELEGRAM_TOKEN = "6692975026:AAGSJJtkFNS2oc0w8P7jyxjFYTB7Nta973M"
+TELEGRAM_TOKEN = settings.TELEGRAM_TOKEN
 
 
-def habit_scheduler():
+def habit_scheduler() -> None:
+    """ check time / day for habit and send notification to user """
     current_time = datetime.now()
     for habit in Habit.objects.filter(is_pleasant=False):
         # DAILY HABIT
         if habit.frequency == "DAILY":
             if habit.time.strftime("%H:%M") == current_time.strftime("%H:%M"):
-                print("SEND MESSAGE TO TELEGRAM")
-                print(f'HABIT TIME: {habit.time.strftime("%H:%M")}')
-                print(f'CURRENT TIME: {current_time.strftime("%H:%M")}')
-                print(f'CHAT ID: {habit.owner.chat_id}')
-                print(f'ACTION: {habit.action}')
-                print(f'PLACE: {habit.place}')
+                print(f'HABIT INFORMATION: {habit}')
                 chat_id = habit.owner.chat_id
                 if habit.award:
                     message = f"ACTION: {habit.action}\nPLACE: {habit.place}\nYOUR AWARD: {habit.award}\nDURATION: {habit.duration}"
@@ -28,7 +24,6 @@ def habit_scheduler():
                     message = f"ACTION: {habit.action}\nPLACE: {habit.place}\nMAKE PLEASANT HABIT: {habit.link_pleasant.action}\nDURATION: {habit.duration}"
                 url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
                 requests.get(url)
-
         # WEEK DAY HABIT
         else:
             today = ""
@@ -50,12 +45,7 @@ def habit_scheduler():
 
             if habit.frequency == today:
                 if habit.time.strftime("%H:%M") == current_time.strftime("%H:%M"):
-                    print("SEND MESSAGE TO TELEGRAM")
-                    print(f'HABIT TIME: {habit.time.strftime("%H:%M")}')
-                    print(f'CURRENT TIME: {current_time.strftime("%H:%M")}')
-                    print(f'CHAT ID: {habit.owner.chat_id}')
-                    print(f'ACTION: {habit.action}')
-                    print(f'PLACE: {habit.place}')
+                    print(f'HABIT INFORMATION: {habit}')
                     chat_id = habit.owner.chat_id
                     if habit.award:
                         message = (f"ACTION: {habit.action}\nPLACE: {habit.place}\nYOUR AWARD: {habit.award}\nDURATION: "
@@ -68,9 +58,8 @@ def habit_scheduler():
                     requests.get(url)
 
 
-def telegram_check_updates():
-
-    # get information from bot
+def telegram_check_updates() -> None:
+    """ get information from telegram bot and add user telegram id to base"""
     url_get_updates = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getUpdates"
     response = requests.get(url_get_updates)
     if response.status_code == 200:
