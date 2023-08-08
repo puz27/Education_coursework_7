@@ -39,11 +39,11 @@
 
 ## Examples work with interface
 ### User authorization
-![img_1.png](authorization.png)
+![authorization.png](authorization.png)
 ### User registration
-![img_2.png](registration.png)
+![registration.png](registration.png)
 ### Habit creation
-![img_3.png](create.png)
+![create.png](create.png)
 
 ## Additional
 * Author: Avramenko Nikolay
