@@ -4,12 +4,12 @@ Education_coursework_7"
 ### Allow to create habits scheduler and make notification to user telegram bot
 ## Requirements.
 * Python
-* Rest
+* Redis
 * Postgres
 ## Installation
 * Download repo
 * Install requirements (pip install -r requirements.txt)
-* Run service Rest
+* Run service Redis (service redis-server start)
 ## Prepare 
 * prepare .env file (examples in .env_sample)
 * create database for postgres
@@ -20,7 +20,7 @@ Education_coursework_7"
 * run command /start in telegram bot 
 ## Start service
 * run command: celery -A config worker -l INFO
-* run command: -A config beat -l info -S django
+* run command: celery -A config beat -l info -S django
 * python manage.py runserver
 ## Work with API (habits)
 * http://127.0.0.1:8000/api/v1/habits/ - show all habits that user has access
@@ -37,7 +37,8 @@ Education_coursework_7"
 * http://127.0.0.1:8000/api/v1/users/registration/ - register user
 * http://127.0.0.1:8000/api/v1/users/token/ - get token for user
 * http://127.0.0.1:8000/api/v1/users/token/refresh/ - refresh user token
-
+## API Documentation (v1)
+* http://127.0.0.1:8000/redoc/
 ## Examples work with interface
 ### User authorization
 ![authorization.PNG](authorization.PNG)
@@ -46,7 +47,7 @@ Education_coursework_7"
 ### Habit creation
 ![create.PNG](create.PNG)
 
-### Description Create Request format
+### Description Requests format
 * place - place of user habit
 * action - what to do
 * award - what user get for his not pleasant habit
