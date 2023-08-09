@@ -17,6 +17,7 @@ Education_coursework_7"
 * make migrate (python manage.py migrate)
 * prepare test user (optional) (python manage.py prepare_users)
 * prepare telegram bot for send information (you can use default configuration @habitscheduler2023_bot)
+* run command /start in telegram bot 
 ## Start service
 * run command: celery -A config worker -l INFO
 * run command: -A config beat -l info -S django
